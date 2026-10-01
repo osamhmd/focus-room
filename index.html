@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#071018" />
+  <meta name="description" content="Focus Room is a minimal, distraction-free focus timer built for one thing at a time." />
+  <title>Focus Room — Your space to focus</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-theme="night">
+  <div class="rain-layer rain-back" aria-hidden="true"></div>
+  <div class="rain-layer rain-front" aria-hidden="true"></div>
+  <div class="window-glow" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Focus Room home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Focus Room</span>
+      </a>
+
+      <div class="top-actions">
+        <button class="icon-button" id="themeBtn" type="button" aria-label="Switch to day ambience" title="Day / Night">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.48-.04-.95-.11-1.4A7 7 0 0 1 12 3Z"/></svg>
+        </button>
+        <button class="icon-button" id="fullscreenBtn" type="button" aria-label="Enter fullscreen" title="Fullscreen (F)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M21 16v5h-5"/></svg>
+        </button>
+        <button class="icon-button" id="settingsBtn" type="button" aria-label="Open timer settings" title="Timer settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5ZM19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.86 2.86-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21H9.55v-.1A1.7 1.7 0 0 0 8.4 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06L3.6 16.94l.06-.06A1.7 1.7 0 0 0 4 15a1.7 1.7 0 0 0-.6-1 1.7 1.7 0 0 0-1.1-.4H2.2V9.55h.1A1.7 1.7 0 0 0 4 8.4a1.7 1.7 0 0 0-.34-1.88L3.6 6.46 6.46 3.6l.06.06A1.7 1.7 0 0 0 8.4 4a1.7 1.7 0 0 0 1-.6 1.7 1.7 0 0 0 .4-1.1V2.2h4.05v.1A1.7 1.7 0 0 0 15 4a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.86 2.86-.06.06A1.7 1.7 0 0 0 19.4 8a1.7 1.7 0 0 0 .6 1 1.7 1.7 0 0 0 1.1.4h.1v4.05h-.1A1.7 1.7 0 0 0 19.4 15Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="focus-stage" aria-labelledby="focusTitle">
+      <div class="eyebrow" id="focusTitle">Your space to focus</div>
+
+      <div class="mode-switcher" role="tablist" aria-label="Timer mode">
+        <button class="mode-button active" type="button" data-mode="focus" role="tab" aria-selected="true">Focus</button>
+        <button class="mode-button" type="button" data-mode="short" role="tab" aria-selected="false">Short break</button>
+        <button class="mode-button" type="button" data-mode="long" role="tab" aria-selected="false">Long break</button>
+      </div>
+
+      <div class="timer-wrap" aria-live="polite">
+        <div class="timer-ring" id="timerRing">
+          <div class="timer-inner">
+            <span class="timer-label" id="timerLabel">Focus session</span>
+            <strong class="timer" id="timer">25:00</strong>
+            <span class="timer-status" id="timerStatus">Ready when you are</span>
+          </div>
+        </div>
+      </div>
+
+      <label class="task-box" for="taskInput">
+        <span>What are you focusing on?</span>
+        <input id="taskInput" type="text" maxlength="90" autocomplete="off" placeholder="Finish the landing page" />
+      </label>
+
+      <div class="timer-controls" aria-label="Timer controls">
+        <button class="control-button secondary" id="resetBtn" type="button" title="Reset (R)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.9 4.9A10 10 0 1 1 2 12h2.4a7.6 7.6 0 1 0 2.23-5.37L9 9H2V2l2.9 2.9Z"/></svg>
+          <span>Reset</span>
+        </button>
+        <button class="control-button primary" id="startBtn" type="button">
+          <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
+          <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7V5Zm6 0h4v14h-4V5Z"/></svg>
+          <span id="startText">Start focus</span>
+        </button>
+      </div>
+
+      <div class="session-meta">
+        <span><strong id="sessionCount">0</strong> sessions today</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span><kbd>Space</kbd> start / pause</span>
+      </div>
+    </section>
+
+    <footer class="footer">Built for one thing at a time.</footer>
+  </main>
+
+  <aside class="settings-panel" id="settingsPanel" aria-hidden="true">
+    <div class="settings-card" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <div class="settings-head">
+        <div>
+          <span class="panel-kicker">Timer settings</span>
+          <h2 id="settingsTitle">Make it yours</h2>
+        </div>
+        <button class="icon-button" id="closeSettingsBtn" type="button" aria-label="Close settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>
+        </button>
+      </div>
+
+      <div class="setting-row">
+        <label for="focusMinutes">Focus</label>
+        <div class="minute-field"><input id="focusMinutes" type="number" min="1" max="120" value="25" /><span>min</span></div>
+      </div>
+      <div class="setting-row">
+        <label for="shortMinutes">Short break</label>
+        <div class="minute-field"><input id="shortMinutes" type="number" min="1" max="60" value="5" /><span>min</span></div>
+      </div>
+      <div class="setting-row">
+        <label for="longMinutes">Long break</label>
+        <div class="minute-field"><input id="longMinutes" type="number" min="1" max="90" value="15" /><span>min</span></div>
+      </div>
+
+      <label class="toggle-row">
+        <span>
+          <strong>Auto-start breaks</strong>
+          <small>Start a short break when a focus session ends.</small>
+        </span>
+        <input id="autoStartToggle" type="checkbox" />
+        <span class="toggle-ui" aria-hidden="true"></span>
+      </label>
+
+      <button class="save-settings" id="saveSettingsBtn" type="button">Save settings</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
